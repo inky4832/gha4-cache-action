@@ -51,36 +51,56 @@
 
 
 # 2) 캐시 적용후 코드
-name: Deploy website
-on:
-  push:
-    branches:
-      - main
+name: Cache workflow
+
+on: push
+
 jobs:
+
   test:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Get code
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm ci
-      - name: Lint code
-        run: npm run lint
-      - name: Test code
-        run: npm run test
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: install dependencies
+        run: npm install axios
+
+      - name: Run Test
+        run: |
+          ls ${{ github.workspace }}
+          echo Run Test
   build:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Get code
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm ci
-      - name: Build website
-        run: npm run build
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: install dependencies
+        run: npm install axios
+
+      - name: Run build
+        run: |
+          ls ${{ github.workspace }}
+          echo Run build
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
-      - name: Deploy
-        run: echo "Deploying..."
+      - name: Run Deploy
+        run: echo Run Deploy
