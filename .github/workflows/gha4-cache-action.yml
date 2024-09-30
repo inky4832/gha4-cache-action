@@ -69,6 +69,9 @@ jobs:
         with:  
           node-version: 20  
 
+      - name: Install dependencies  
+        run: npm install axios  
+
       - name: Cache npm dependencies               
         uses: actions/cache@v4  
         with:  
@@ -76,9 +79,6 @@ jobs:
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}   
           restore-keys: |  
             ${{ runner.os }}-npm-  
-
-      - name: Install dependencies  
-        run: npm install axios  
 
       - name: Run Test  
         run: |  
@@ -96,18 +96,18 @@ jobs:
         uses: actions/setup-node@v4  
         with:  
           node-version: 20  
-      
+    
+      - name: Install dependencies  
+        run: npm install axios  
+
       - name: Cache npm dependencies               
         uses: actions/cache@v4  
         with:  
           path: ~/.npm  
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}   
           restore-keys: |  
-            ${{ runner.os }}-npm-  
-
-      - name: Install dependencies  
-        run: npm install axios  
-
+            ${{ runner.os }}-npm-  ;
+            
       - name: Run Build  
         run: |  
           ls ${{ github.workspace }}  
