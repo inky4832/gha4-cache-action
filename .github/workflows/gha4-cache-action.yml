@@ -1,4 +1,4 @@
-name: Multi Job workflow
+name: Cache workflow
 
 on: push
 
