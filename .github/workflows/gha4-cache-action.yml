@@ -1,5 +1,5 @@
 # 1) 캐시 적용전 코드
-name: Cache workflow
+name: Cache 적용전 workflow
 
 on: push
 
@@ -52,7 +52,7 @@ jobs:
 
 # 2) 캐시 적용후 코드
 
-# name: Cache workflow  
+# name: Cache 적용후 workflow  
 
 # on: push  
 
